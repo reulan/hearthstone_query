@@ -55,8 +55,5 @@ def hearthstone_query():
     #return card_names
     return flask.render_template('index.html', card_images=card_images)
 
-#if __name__ == '__main__':
-    # Instantiate and initialize Hearthstone API helper
-    #hsq_client = client_setup()
-    #combined_cards = retrieve_card_data(hsq_client)
-    app.run(port=5000, debug=True)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=443, debug=False)

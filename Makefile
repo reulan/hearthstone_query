@@ -17,4 +17,4 @@ push: tag
 	docker push $(IMAGE):$(GIT_HASH)
 
 test: tag
-	docker run --rm -it -e FLASK_APP=$(FLASK_APP) --expose 5000 -e HSQ_CLIENT_ID=$(HSQ_CLIENT_ID) -e HSQ_CLIENT_SECRET=$(HSQ_CLIENT_SECRET) $(IMAGE):$(GIT_HASH)
+	docker run --rm -it -e FLASK_APP=$(FLASK_APP) -p 443:443 -e HSQ_CLIENT_ID=$(HSQ_CLIENT_ID) -e HSQ_CLIENT_SECRET=$(HSQ_CLIENT_SECRET) $(IMAGE):$(GIT_HASH)
