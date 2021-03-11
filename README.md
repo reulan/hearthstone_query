@@ -6,7 +6,7 @@ Cards matching:
 - Rarity: Legendary
 
 Endpoints are reachable at (was pretty straightforward for me to Dockerize + host since my personal infra exists):
-[hsq.reulan.com/](https://hsq.reulan.com/)
+[hsq.reulan.com](https://hsq.reulan.com/)
 
 On page refresh, 10 cards will be selected matching the criteria above.
 
@@ -24,6 +24,9 @@ Display results sorted by card ID in a human readable table that includes:
 pip3 install flask
 pip3 install requests
 pip3 install requests_oauthlib
+
+alternatively,
+pip3 install -r requirements.txt
 ```
 
 ## Configuration
@@ -34,14 +37,7 @@ export HSQ_CLIENT_ID=""
 export HSQ_CLIENT_SECRET=""
 ```
 
-In Kubernetes secrets are read from a Kubernetes Secret resource.
-
-For production, I am comfortable using Google Secret Manager or Vault.
-
-### Flask
-```
-export FLASK_APP="app.py"
-```
+For production, Kubernetes secrets are read from a Kubernetes Secret resource. (this would ideally be moved to a more secure secret store such as vault).
 
 ## Running
 ### Locally
@@ -50,8 +46,14 @@ flask run
 ```
 
 ### Docker
+A Makefile is included in the repository that has some handy wrappers around some commands that I had used often while developing.
+
+This docker image is in my private registry, so if you'd like to run it it needs to be built locally.
 ```
-docker run :latest
+make test
+
+alternatively,
+docker run --rm -it -p 5000:5000 -e HSQ_CLIENT_ID="REDACTED" -e HSQ_CLIENT_SECRET="REDACTED" "gcr.io/noobshack-164103/hsq":latest 
 ```
 
 ## Deployment
@@ -67,7 +69,7 @@ This is deployed to my personal infrastucture using a Makefile (which uses Docke
 - Implement actual logging instead of print statements.
 
 ## Resources Used
-[Hearthstone GameData API](https://develop.battle.net/documentation/hearthstone/game-data-apis)
-[Flask Documentation](https://flask.palletsprojects.com/en/1.1.x/)
-[Requests Documentation](https://requests.readthedocs.io/en/master/)
-[Hearthstone Card List - Warlock Legendaries](https://playhearthstone.com/en-us/cards?class=warlock&rarity=legendary&set=wild)
+- [Hearthstone GameData API](https://develop.battle.net/documentation/hearthstone/game-data-apis)
+- [Flask Documentation](https://flask.palletsprojects.com/en/1.1.x/)
+- [Requests Documentation](https://requests.readthedocs.io/en/master/)
+- [Hearthstone Card List - Warlock Legendaries](https://playhearthstone.com/en-us/cards?class=warlock&rarity=legendary&set=wild)
