@@ -1,0 +1,17 @@
+<!doctype html>
+<head>
+    <title>hsq - reulan</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: #b19cd9;
+        }
+    </style>
+</head>
+<h1>hsq (Hearthstone Query)</h1>
+<h2>Blizzard Coding Challenge</h2>
+<p><strong>Randomly displays 10 legendary cards that cost 7 or more mana from the Druid and Warlock classes in Hearthstone.<strong></p>
+<p>Created by:  <a href="https://reulan.com">reulan</a> <br>Source Code: <a href="https://github.com/reulan/hearthstone_query">reulan/hearthstone_query</a> </p>
+{% for card_image in card_images %}
+    <img src='{{card_image}}'/>
+{% endfor %}
