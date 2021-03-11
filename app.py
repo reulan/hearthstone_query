@@ -56,4 +56,4 @@ def hearthstone_query():
     return flask.render_template('index.html', card_images=card_images)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=443, debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=False)

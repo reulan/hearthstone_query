@@ -18,5 +18,5 @@ COPY --chown=hsq:hsq app.py .
 RUN pip3 install -r requirements.txt
 
 # Run the API
-EXPOSE 443
+EXPOSE 5000
 CMD ["python", "/app/app.py"]
