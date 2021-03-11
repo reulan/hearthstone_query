@@ -42,7 +42,11 @@ For production, Kubernetes secrets are read from a Kubernetes Secret resource. (
 ## Running
 ### Locally
 ```
+export FLASK_APP="app.py"
 flask run
+
+alternatively,
+python3 app.py
 ```
 
 ### Docker
